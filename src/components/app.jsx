@@ -25,8 +25,7 @@ class App extends Component {
       rating: 'g',
       limit: 10 }, (error, result) => {
       this.setState({
-        gifs: result.data
-        console.log(data)
+        gifs: result.data.map(giph => giph.id)
       })
     })
   }
