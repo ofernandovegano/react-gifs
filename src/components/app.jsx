@@ -19,12 +19,14 @@ class App extends Component {
     this.selectGif = this.selectGif.bind(this);
   }
 
-  search(query) {
-    const giphEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query}&limit=10`
-    fetch(giphEndpoint).then(response => response.json()).then((data) => {
-      const gifs = data.data.map(giph => giph.id)
+  search = (query) => {
+    giphy(GIPHY_API_KEY).search({
+      q: query,
+      rating: 'g',
+      limit: 10 }, (error, result) => {
       this.setState({
-        gifs: gifs
+        gifs: result.data
+        console.log(data)
       })
     })
   }
